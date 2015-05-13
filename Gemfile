@@ -7,3 +7,7 @@ group :development do
   gem 'thin'
   gem 'rerun'
 end
+
+group production do
+  gem 'unicorn'
+end
