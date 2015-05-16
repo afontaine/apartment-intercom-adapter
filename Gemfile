@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'twilio-ruby'
 gem 'rack'
+gem 'rake'
+gem 'bcrypt'
 
 group :development do
   gem 'thin'
