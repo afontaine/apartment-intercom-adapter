@@ -16,8 +16,7 @@ task :config do
       STDIN.noecho(&:gets).chomp)
     puts
     print 'Confirm the password: '
-    config[:login][:password] = password.checksum
-    config[:login][:salt] = password.salt
+    config[:login][:password] = password.to_s
     break if password == STDIN.noecho(&:gets).chomp
     print 'The passwords did not match. Try again.'
   end
