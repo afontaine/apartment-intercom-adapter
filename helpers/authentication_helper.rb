@@ -8,7 +8,7 @@ module ApartmentIntercomAdapter
 
     def authenticate_user(user, pass)
       session[:auth] = (user == settings.login[:username] &&
-        pass == BCrypt::Password.new(settings.login[:password]))
+        BCrypt::Password.new(settings.login[:password]) == pass)
     end
 
     def authenticate
