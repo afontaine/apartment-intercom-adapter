@@ -17,10 +17,8 @@ module ApartmentIntercomAdapter
     end
 
     get '/call' do
-      redirect '/' unless params['Digits'] == '1'
       content_type :xml
-      puts settings.options.numbers
-      dial_numbers(*settings.options.numbers)
+      dial_numbers(*settings.numbers)
     end
 
     get '/call_end' do
