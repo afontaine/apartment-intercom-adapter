@@ -20,16 +20,16 @@ module ApartmentIntercomAdapter
       helpers AuthenticationHelper
       before { authenticate unless request.path_info == '/admin/login' }
 
-      get '/' do
+      get do
         'Dashboard'
       end
 
       get '/login' do
-        'login'
+        erb :login
       end
 
       post '/login' do
-        authenticate_user(params[:user], params[:pass])
+        authenticate_user(params[:username], params[:password])
         redirect to('/admin')
       end
 
