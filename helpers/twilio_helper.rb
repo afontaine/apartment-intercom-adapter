@@ -4,7 +4,7 @@ module ApartmentIntercomAdapter
   module TwilioHelper
     def dial_numbers(*args)
       Twilio::TwiML::Response.new do |r|
-        r.Dial hangupOnStar: true, timeLimit: 120, timeout: 5,
+        r.Dial timeLimit: 120,
                action: '/call_end', method: 'GET' do |d|
           args.each { |n| d.Number n }
         end

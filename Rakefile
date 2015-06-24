@@ -1,5 +1,9 @@
 require 'yaml'
 require 'bcrypt'
+require 'sinatra/asset_pipeline/task'
+require_relative './app'
+
+Sinatra::AssetPipeline::Task.define! ApartmentIntercomAdapter::Application
 
 task default: :config
 

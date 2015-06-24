@@ -1,11 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'sinatra-contrib'
 gem 'twilio-ruby'
 gem 'rack'
 gem 'rake'
 gem 'bcrypt'
+
+group :sinatra do
+  gem 'sinatra', require: 'sinatra/base'
+  gem 'sinatra-contrib', require: ['sinatra/config_file', 'sinatra/namespace']
+  gem 'sinatra-asset-pipeline', require: 'sinatra/asset_pipeline'
+
+  source 'https://rails-assets.org' do
+    gem 'rails-assets-knockoutjs'
+  end
+end
 
 group :development do
   gem 'thin'

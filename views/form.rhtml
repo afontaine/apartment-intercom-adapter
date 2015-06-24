@@ -1,0 +1,21 @@
+<h3>Numbers</h3>
+<script type="text/javascript" src="<%= javascript_path 'application' %>"></script>
+<table>
+  <thead>
+    <th>
+      Phone Number
+    </th>
+  </thead>
+  <tbody>
+    <% @numbers.each do |number| %>
+      <tr>
+        <td>
+          <%= number %>
+        </td>
+        <td>
+          Remove
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
