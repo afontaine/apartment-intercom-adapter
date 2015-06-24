@@ -12,7 +12,7 @@ module ApartmentIntercomAdapter
     end
 
     def authenticate
-      redirect to('/admin/login') unless authenticated?
+      yield unless authenticated?
     end
 
     def deauthenticate

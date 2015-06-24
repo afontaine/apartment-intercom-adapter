@@ -22,7 +22,11 @@ module ApartmentIntercomAdapter
 
     namespace '/admin' do
       helpers AuthenticationHelper
-      before { authenticate unless request.path_info == '/admin/login' }
+      before do
+        authenticate do
+          redirect to('/admin/login')
+        end unless request.path_info == '/admin/login'
+      end
 
       get do
         @numbers = settings.numbers
