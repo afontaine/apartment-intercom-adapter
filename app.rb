@@ -1,3 +1,4 @@
+require 'json'
 require 'bundler'
 Bundler.require(:sinatra)
 
@@ -44,6 +45,25 @@ module ApartmentIntercomAdapter
 
       post '/logout' do
         deauthenticate
+      end
+    end
+
+    namespace '/api' do
+      helpers AuthenticationHelper
+      before do
+        authenticate do
+          status 403
+        end unless request.path_info == '/admin/login'
+      end
+
+      get '/numbers', provides: :json do
+        content_type :json
+        settings.numbers.to_json
+      end
+
+      post '/numbers', provides: :json do
+        puts params
+        settings.numbers = JSON.parse(params)[:numbers]
       end
     end
 

@@ -1,21 +1,26 @@
 <h3>Numbers</h3>
-<script type="text/javascript" src="<%= javascript_path 'application' %>"></script>
 <table>
   <thead>
     <th>
       Phone Number
     </th>
   </thead>
-  <tbody>
-    <% @numbers.each do |number| %>
+  <tbody data-bind="foreach: numbers">
       <tr>
         <td>
-          <%= number %>
+          <input type="text" data-bind="value: $data">
         </td>
         <td>
-          Remove
+          <a
+            href=""
+            onclick="return false;"
+            data-bind="click: $root.removeNumber">
+            Remove
+          </a>
         </td>
       </tr>
-    <% end %>
   </tbody>
 </table>
+<a href="" onclick="return false;" data-bind="click: save">Save</a>
+<script type="text/javascript" src="<%= javascript_path 'application' %>">
+</script>

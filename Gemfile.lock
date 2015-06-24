@@ -4,6 +4,7 @@ GEM
   specs:
     backports (3.6.4)
     bcrypt (3.1.10)
+    bcrypt (3.1.10-x64-mingw32)
     builder (3.2.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -15,6 +16,7 @@ GEM
     eventmachine (1.0.7)
     execjs (2.5.2)
     ffi (1.9.8)
+    ffi (1.9.8-x64-mingw32)
     hike (1.2.3)
     hitimes (1.2.2)
     jwt (1.5.0)
@@ -29,6 +31,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rails-assets-jquery (2.1.4)
     rails-assets-knockoutjs (3.3.0)
     raindrops (0.13.0)
     rake (10.4.2)
@@ -85,10 +88,12 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   bcrypt
   rack
+  rails-assets-jquery!
   rails-assets-knockoutjs!
   rake
   rerun
