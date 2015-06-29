@@ -62,8 +62,8 @@ module ApartmentIntercomAdapter
       end
 
       post '/numbers', provides: :json do
-        puts params
-        settings.numbers = JSON.parse(params)[:numbers]
+        content_type :json
+        settings.numbers = params[:numbers]
       end
     end
 
