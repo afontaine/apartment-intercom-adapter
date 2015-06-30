@@ -63,7 +63,19 @@ module ApartmentIntercomAdapter
 
       post '/numbers', provides: :json do
         content_type :json
-        settings.numbers = params[:numbers]
+        (settings.numbers = params[:numbers]).to_json
+      end
+
+      put '/numbers/:number', provides: :json do
+        content_type :json
+        settings.numbers << params[:number]
+        settings.numbers.uniq.to_json
+      end
+
+      delete '/numbers/:number', provides: :json do
+        content_type :json
+        settings.numbers.delete(params[:number])
+        settings.numbers.to_json
       end
     end
 
