@@ -34,3 +34,6 @@ build/
 .rvmrc
 
 config.yml
+
+# Sinatra stuff
+.sass-cache/
