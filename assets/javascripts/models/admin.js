@@ -9,7 +9,7 @@ function AdminViewModel() {
     self.numbers.remove(number);
   };
   self.save = function () {
-    $.post("/api/numbers", {numbers: self.numbers() }, self.numbers)
+    $.post("/api/numbers", {numbers: self.numbers() }, self.numbersf)
   };
 
   $.getJSON("/api/numbers", function (numbers) {
