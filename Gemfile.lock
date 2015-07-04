@@ -31,8 +31,10 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails-assets-bootstrap-sass (3.3.5)
+    rails-assets-bootstrap-sass-official (3.2.0.2)
       rails-assets-jquery (>= 1.9.0)
+    rails-assets-bootswatch-sass (3.3.1)
+      rails-assets-bootstrap-sass-official (~> 3.2.0)
     rails-assets-jquery (2.1.4)
     rails-assets-knockoutjs (3.3.0)
     raindrops (0.13.0)
@@ -95,7 +97,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   rack
-  rails-assets-bootstrap-sass!
+  rails-assets-bootswatch-sass!
   rails-assets-jquery!
   rails-assets-knockoutjs!
   rake

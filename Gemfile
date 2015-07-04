@@ -35,7 +35,7 @@ group :sinatra do
   source 'https://rails-assets.org' do
     gem 'rails-assets-knockoutjs'
     gem 'rails-assets-jquery'
-    gem 'rails-assets-bootstrap-sass'
+    gem 'rails-assets-bootswatch-sass'
   end
 end
 
