@@ -27,8 +27,8 @@ function AdminViewModel() {
   var self = this;
   self.numbers = ko.observableArray([]);
 
-  self.addSeat = function () {
-    self.seats.push("");
+  self.addNumber = function () {
+    self.numbers.push("");
   };
   self.removeNumber = function (number) {
     self.numbers.remove(number);

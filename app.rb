@@ -10,7 +10,7 @@ module ApartmentIntercomAdapter
     register Sinatra::ConfigFile
     register Sinatra::Namespace
     register Sinatra::AssetPipeline
-    include TwilioHelper
+    helpers TwilioHelper, AuthenticationHelper
 
     config_file 'config.yml'
     configure do
@@ -22,7 +22,6 @@ module ApartmentIntercomAdapter
     end
 
     namespace '/admin' do
-      helpers AuthenticationHelper
       before do
         authenticate do
           redirect to('/admin/login')
@@ -43,8 +42,9 @@ module ApartmentIntercomAdapter
         redirect to('/admin')
       end
 
-      post '/logout' do
+      get '/logout' do
         deauthenticate
+        redirect to('/login')
       end
     end
 

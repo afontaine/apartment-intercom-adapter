@@ -42,21 +42,17 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <% if authenticated? %>
+          <li><a href="/admin/login">Logout</a></li>
+          <% else %>
           <li><a href="/admin/login">Login</a></li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
   <div class="container">
-    <h3>Numbers</h3>
-
-    <ul>
-      <% @numbers.each do |number| %>
-        <li>
-          <%= number %>
-        </li>
-        <% end %>
-    </ul>
+    <%= yield %>
   </div>
 </body>
 
