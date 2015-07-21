@@ -25,20 +25,27 @@
 
 function AdminViewModel() {
   var self = this;
-  self.numbers = ko.observableArray([]);
+  self.numbers = ko.observableArray();
 
   self.addNumber = function () {
-    self.numbers.push("");
+    self.numbers.push(ko.observable(""));
   };
   self.removeNumber = function (number) {
-    self.numbers.remove(number);
+    self.numbers.remove(function(num) {
+      return num() == number
+    });
   };
   self.save = function () {
-    $.post("/api/numbers", {numbers: self.numbers() }, self.numbersf)
+    $.post("/api/numbers", {numbers: self.numbers() }, self.set)
   };
+  self.set = function (numbers) {
+    numbers = $.map(numbers, function(val, i) {
+      return ko.observable(val);
+    });
+    self.numbers(numbers);
+  }
 
   $.getJSON("/api/numbers", function (numbers) {
-    self.numbers(numbers);
-    console.log(self.numbers());
+    self.set(numbers);
   });
 }
