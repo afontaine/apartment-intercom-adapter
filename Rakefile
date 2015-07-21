@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
+require 'io/console'
 require 'yaml'
 require 'bcrypt'
 require 'sinatra/asset_pipeline/task'

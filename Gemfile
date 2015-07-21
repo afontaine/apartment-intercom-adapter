@@ -39,11 +39,11 @@ group :sinatra do
   end
 end
 
-group :development do
-  gem 'thin'
-  gem 'rerun'
+group :production do
+  gem 'puma'
 end
 
-group :production do
-  gem 'unicorn'
+group :development do
+  gem 'rerun'
+  gem 'thin'
 end

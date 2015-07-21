@@ -34,7 +34,7 @@ module ApartmentIntercomAdapter
     register Sinatra::AssetPipeline
     helpers TwilioHelper, AuthenticationHelper
 
-    config_file 'config.yml'
+    config_file 'config/config.yml'
     configure do
       enable :sessions
       set :assets_precompile, %w(application.js application.css)

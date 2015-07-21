@@ -23,5 +23,5 @@
 
 require_relative './app'
 abort('Missing config file. ' \
-  'Run `rake` to generate one') unless File.file?('config.yml')
+  'Run `rake` to generate one') unless File.file?('config/config.yml')
 run ApartmentIntercomAdapter::Application
