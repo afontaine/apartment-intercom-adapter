@@ -71,7 +71,7 @@ module ApartmentIntercomAdapter
     end
 
     namespace '/api' do
-      helpers AuthenticationHelper
+      helpers AuthenticationHelper, ConfigHelper
       before do
         authenticate do
           status 403
@@ -85,6 +85,7 @@ module ApartmentIntercomAdapter
 
       post '/numbers', provides: :json do
         content_type :json
+        update_numbers('config.yml', params[:numbers])
         (settings.numbers = params[:numbers]).to_json
       end
 
