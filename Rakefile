@@ -28,15 +28,19 @@ require_relative './app'
 
 Sinatra::AssetPipeline::Task.define! ApartmentIntercomAdapter::Application
 
-task default: :config
+task default: :serve
 
-task :config do
-  if File.file?('config.yml')
+task :serve => 'config/config.yml' do
+  sh 'rackup'
+end
+
+file 'config/config.yml' do
+  if File.file?('config/config.yml')
     print 'Overwrite the existing config [yN] '
-    return unless /^[Yy]/ =~ gets.chomp
+    return unless /^[Yy]/ =~ STDIN.gets.chomp
   end
   print 'Enter a username: '
-  config = { login: { username: gets.chomp } }
+  config = { login: { username: STDIN.gets.chomp } }
   loop do
     print 'Enter a password: '
     password = BCrypt::Password.create(
@@ -51,9 +55,9 @@ task :config do
   puts 'Enter phone numbers. Stop entering with a blank line.'
   config[:numbers] = []
   loop do
-    number = gets.chomp
+    number = STDIN.gets.chomp
     break if number.empty?
     config[:numbers] << number
   end
-  File.open('config.yml', 'w') { |f| f.write(config.to_yaml) }
+  File.open('config/config.yml', 'w') { |f| f.write(config.to_yaml) }
 end

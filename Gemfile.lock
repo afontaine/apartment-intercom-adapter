@@ -25,6 +25,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     multi_json (1.11.0)
+    puma (2.15.3)
     rack (1.6.1)
     rack-protection (1.5.3)
       rack
@@ -90,6 +91,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  puma
   rack
   rails-assets-bootswatch-sass!
   rails-assets-jquery!

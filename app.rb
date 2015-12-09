@@ -26,6 +26,7 @@ Bundler.require(:sinatra)
 
 require_relative './helpers/twilio_helper'
 require_relative './helpers/authentication_helper'
+require_relative './helpers/config_helper.rb'
 
 module ApartmentIntercomAdapter
   class Application < Sinatra::Base
@@ -85,7 +86,7 @@ module ApartmentIntercomAdapter
 
       post '/numbers', provides: :json do
         content_type :json
-        update_numbers('config.yml', params[:numbers])
+        update_numbers('config/config.yml', params[:numbers])
         (settings.numbers = params[:numbers]).to_json
       end
 
