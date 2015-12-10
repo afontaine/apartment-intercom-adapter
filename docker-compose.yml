@@ -1,0 +1,12 @@
+web:
+    build: .
+    volumes:
+        - ~/sockets:/var/run
+    volumes_from:
+        - data
+
+data:
+    image: debian:jessie
+    volumes:
+        - /opt/apartment-intercom-adapter/config
+

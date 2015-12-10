@@ -4,7 +4,6 @@ RUN gem install bundler --no-rdoc --no-ri
 ADD . /opt/apartment-intercom-adapter
 
 WORKDIR /opt/apartment-intercom-adapter
-RUN bundle install --path vendor/bundle
+RUN bundle install --without development --path vendor/bundle
 
-EXPOSE 9292
-ENTRYPOINT bundle exec rake serve
+CMD bundle exec puma -C deploy/puma.rb

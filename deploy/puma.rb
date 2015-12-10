@@ -5,8 +5,6 @@ threads threads_count, threads_count
 preload_app!
 
 rackup DefaultRackup
-port ENV['PORT'] || 3000
 environment 'production'
-daemonize
-bind unix:///var/run/puma.sock
+bind 'unix:///var/run/apartment-intercom-adapter.sock'
 tag 'apartment-intercom-adapter'

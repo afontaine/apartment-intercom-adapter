@@ -34,6 +34,8 @@ task :serve => 'config/config.yml' do
   sh 'rackup'
 end
 
+task :config => 'config/config.yml'
+
 file 'config/config.yml' do
   if File.file?('config/config.yml')
     print 'Overwrite the existing config [yN] '
@@ -59,5 +61,6 @@ file 'config/config.yml' do
     break if number.empty?
     config[:numbers] << number
   end
+  Dir.mkdir('config') unless File.exists?('config')
   File.open('config/config.yml', 'w') { |f| f.write(config.to_yaml) }
 end
