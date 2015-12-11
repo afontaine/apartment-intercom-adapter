@@ -28,16 +28,28 @@ module ApartmentIntercomAdapter
   module TwilioHelper
     def dial_numbers(*args)
       Twilio::TwiML::Response.new do |r|
-        r.Dial timeLimit: 120,
-               action: '/call_end', method: 'GET' do |d|
-          args.each { |n| d.Number n }
+        r.Dial timeLimit: 120 do |d|
+          args.each do |n|
+            d.Number n, method: 'GET', statusCallback: "/call_end/#{n}" 
+          end
         end
       end.text
     end
 
-    def no_one_home
+    def no_one_home(r)
+      r.Say 'There is no one home. Goodbye.'
+    end
+
+    def sms_confirmation(r, args, number: "")
+      args.each do |n|
+        r.Sms "Door answered by #{number}", to: n
+      end
+    end
+
+    def hangup
       Twilio::TwiML::Response.new do |r|
-        r.Say 'There is no one home. Goodbye.'
+        yield r
+        r.Hangup
       end.text
     end
   end

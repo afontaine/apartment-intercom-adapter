@@ -114,10 +114,18 @@ module ApartmentIntercomAdapter
       dial_numbers(*settings.numbers)
     end
 
-    get '/call_end' do
+    get '/call_end/:number' do
       content_type :xml
-      no_one_home if params[:DialCallStatus] == 'no-answer' ||
-                     params[:DialCallStatus] == 'busy'
+      hangup do |r|
+        sms_confirmation(
+          r,
+          settings.numbers,
+          number: params[:number]
+        ) if params[:DialCallStatus] == 'answered' ||
+          params[:DialCallStatus] == 'completed'
+        no_one_home if params[:DialCallStatus] == 'no-answer' ||
+          params[:DialCallStatus] == 'busy'
+      end
     end
   end
 end
