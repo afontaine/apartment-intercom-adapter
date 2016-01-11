@@ -22,6 +22,7 @@
 
 require 'json'
 require 'bundler'
+require 'uri'
 Bundler.require(:sinatra)
 
 require_relative './helpers/twilio_helper'
@@ -111,7 +112,7 @@ module ApartmentIntercomAdapter
     get '/call' do
       redirect to('/') unless params[:From]
       content_type :xml
-      dial_numbers(*settings.numbers)
+      dial_numbers(*settings.numbers, url: URI(request.url))
     end
 
     get '/call_end/:number' do

@@ -20,17 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 require 'bundler/setup'
 require 'twilio-ruby'
 
 module ApartmentIntercomAdapter
   module TwilioHelper
-    def dial_numbers(*args)
+    def dial_numbers(*args, url: "")
+      url.query = nil
+      url.fragment = nil
       Twilio::TwiML::Response.new do |r|
         r.Dial timeLimit: 120 do |d|
           args.each do |n|
-            d.Number n, method: 'GET', statusCallback: "/call_end/#{n}" 
+            url.path = "/call_end/#{n}"
+            d.Number n,
+              method: 'GET',
+              statusCallback: url.to_s
           end
         end
       end.text
