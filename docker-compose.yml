@@ -8,5 +8,4 @@ web:
 data:
     image: debian:jessie
     volumes:
-        - /opt/apartment-intercom-adapter/config
-
+        - /opt/app/config
